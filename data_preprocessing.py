@@ -8,12 +8,13 @@ import scipy
 import sklearn
 import scipy.io as sio
 
-df = pd.read_csv('data/dataset.csv')
-df_ecg = df.drop('3600',axis=1)
-avg = df_ecg.mean(axis=1)
-stddev = df_ecg.std(axis=1)
-df_ecg=df_ecg.subtract(avg,axis=0)
-df_ecg=df_ecg.div(stddev,axis=0)
-df_ecg.round(4)
-df_ecg['3600'] = df['3600']
-df_ecg.to_csv('data/preprocessed_dataset.csv', index=False)
+def data_clean():
+    df = pd.read_csv('data/dataset.csv')
+    df_ecg = df.drop('3600',axis=1)
+    avg = df_ecg.mean(axis=1)
+    diff = df_ecg.max(axis=1) - df_ecg.min(axis=1)
+    df_ecg=df_ecg.subtract(avg,axis=0)
+    df_ecg=df_ecg.div(diff,axis=0)
+    df_ecg['3600'] = df['3600']
+    return df_ecg.to_csv('data/preprocessed_dataset.csv', index=False)
+
