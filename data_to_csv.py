@@ -1,6 +1,7 @@
 import os
 import scipy.io
 import numpy as np
+
 names = ['1 NSR', '2 APB', '3 AFL', '4 AFIB', '5 SVTA', '6 WPW', '7 PVC', '8 Bigeminy', '9 Trigeminy', '10 VT', '11 IVR', '12 VFL', '13 Fusion', '14 LBBBB', '15 RBBBB', '16 SDHB', '17 PR']
 for i in range(len(names)):
     l = os.listdir('MLII/' + names[i])
@@ -14,4 +15,7 @@ for i in range(len(names)):
     else:
         data = np.vstack((data,arr))
 data = data.astype(int)
-np.savetxt('data/dataset.csv', data, delimiter=',')
+# np.savetxt('dataset/dataset.csv', data, delimiter=',')
+# data.tofile('data/datatofile.csv',sep=',')
+DF = pd.DataFrame(data) 
+DF.to_csv('data/dataset.csv')
