@@ -7,7 +7,7 @@ names = ['1 NSR', '2 APB', '3 AFL', '4 AFIB', '5 SVTA', '6 WPW', '7 PVC', '8 Big
 for i in range(len(names)):
     l = os.listdir('MLII/' + names[i])
     arr = np.zeros((len(l),3600))
-    nums = (i + 1) * np.ones((len(l),1))
+    nums = i * np.ones((len(l),1))
     for j in range(len(l)):
         arr[j] = scipy.io.loadmat('MLII/' + names[i] + '/' + l[j])['val']
     arr = np.hstack((arr,nums))
