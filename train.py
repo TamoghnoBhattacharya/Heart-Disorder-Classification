@@ -47,7 +47,6 @@ def cnn_model():
 
     return model
 
-
 def model_fit(model):
     model = cnn_model()
     model.compile(loss='categorical_crossentropy', optimizer='adam',metrics=['accuracy'])
@@ -55,7 +54,5 @@ def model_fit(model):
     model.save('models/cnn_model_1.h5')
 
 model_fit(model)
-
-
 
 
