@@ -17,13 +17,13 @@ def train_mat_to_csv():
         else:
             data = np.vstack((data,arr))
     data = data.astype(int)
-    # np.savetxt('dataset/dataset.csv', data, delimiter=',')
-    # data.tofile('data/datatofile.csv',sep=',')
     df = pd.DataFrame(data) 
     return df.to_csv('data/dataset.csv', index=False)
 
-def new_mat_to_csv(PATH, NEW_PATH):
+def new_mat_to_csv(PATH):
     data = scipy.io.loadmat(PATH)['val']
     data = data.astype(int)
     df = pd.DataFrame(data)
-    return df.to_csv(NEW_PATH, index=False)
+    return df.to_csv('data/data.csv', index=False)
+
+train_mat_to_csv()
